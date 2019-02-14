@@ -1,0 +1,66 @@
+% Es un tipo de documento pequeño, (twoside:impresion doble cara)
+\documentclass[12pt,twoside]{report} 
+% Babel paquete idiomatico
+\usepackage[spanish]{babel}
+% Inputenc: acepta diferentes codificaciones de entrada
+\usepackage[utf8]{inputenc}
+% Paquete para utilizar imagenes
+\usepackage{graphicx}
+% Paquete para configurar el diseño de la pagina, bindingoffset para los equilibrar los margenes externos (mas grandes) que los internos
+\usepackage[a4paper, width = 150mm, top = 25mm, bottom = 25mm, bindingoffset = 6mm ] { geometry }
+% Abreviaturas y siglas
+\usepackage[acronym]{glossaries}
+% Paquete para agregar encabezados y pies de pagina, si se desea tener una pagina libre de encabezados \pagestyle{empty}
+\usepackage{fancyhdr} 
+% Cambia el formarto de paragraph
+\usepackage{titlesec}
+% Configuracion de la ubicacion de las imagenes
+\graphicspath{{images/}}
+
+% Configuracion de titulos y subtitulos
+\setcounter{secnumdepth}{4}
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% Metadatos 
+\makeatletter
+\title{GUIA DE INSTALACIÓN DEBIAN}\let\Title\@title
+\author{Rodrigo Mendoza Melgar}\let\Author\@author
+\date{-}\let\Date\@date
+\makeatother
+
+% Estilo del encabezado y pie de pagina
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}} % mejora del chapter
+\renewcommand{\footrulewidth}{0.4pt} % linea footer
+\renewcommand{\headrulewidth}{0.4pt} % linea header
+\fancyhf{}
+\fancyhead[C]{\chaptername~\thechapter}
+\fancyhead[C]{\leftmark}
+%\fancyfoot[LO,RE]{\Author}
+\fancyfoot[CO,CE]{\thepage}
+
+\begin{document}
+
+	% --- Caratula ---
+	\begin{titlepage}
+		\begin{center}
+			
+			\vspace*{20em}
+			
+			\rule{\textwidth}{1.6pt}\\[0.7em]
+			\textbf{\LARGE\Title}
+			\vspace*{2em}
+			\rule{\textwidth}{1.6pt}
+			
+			\vspace*{10em}
+						
+			\textsc{\textbf{Elaborada por:}}\\
+			\textsc{\textbf{\Author}}\\[15em]
+			\textsc{\textbf{Arequipa - Perú}}\\
+			\textsc{\textbf{2019}}\\[1em]
+		\end{center}
+	\end{titlepage}
+
+\end{document}
