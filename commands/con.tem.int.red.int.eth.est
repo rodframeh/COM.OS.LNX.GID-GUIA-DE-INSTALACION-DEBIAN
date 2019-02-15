@@ -1,0 +1,16 @@
+nano /etc/network/interfaces
+ 
+source /etc/network/interfaces.d/*
+
+auto lo
+iface lo inet loopback
+
+auto [NOMBRE_INTERFACE]
+allow-hotplug [NOMBRE_INTERFACE]
+iface [NOMBRE_INTERFACE] inet static
+	address 192.168.0.11
+	netmask 255.255.255.0
+	network 192.168.0.0
+	gateway 192.168.0.1
+	broadcast 192.168.0.255
+	dns-nameservers 8.8.8.8 8.8.4.4

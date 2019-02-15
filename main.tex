@@ -4,10 +4,14 @@
 \usepackage[spanish]{babel}
 % Inputenc: acepta diferentes codificaciones de entrada
 \usepackage[utf8]{inputenc}
+% Permite referenciar capitulos
+\usepackage{hyperref}
 % Paquete para utilizar imagenes
 \usepackage{graphicx}
 % Paquete para configurar el diseño de la pagina, bindingoffset para los equilibrar los margenes externos (mas grandes) que los internos
 \usepackage[a4paper, width = 150mm, top = 25mm, bottom = 25mm, bindingoffset = 6mm ] { geometry }
+% Permite adjuntar archivos%
+\usepackage{attachfile}
 % Abreviaturas y siglas
 \usepackage[acronym]{glossaries}
 % Paquete para agregar encabezados y pies de pagina, si se desea tener una pagina libre de encabezados \pagestyle{empty}
@@ -16,7 +20,10 @@
 \usepackage{titlesec}
 % Configuracion de la ubicacion de las imagenes
 \graphicspath{{images/}}
-
+% Permite mostrar codigos de programas
+\usepackage[cache=false]{minted}
+% Permite ajustar el espacio entre lineas
+% \usepackage{setspace}
 % Configuracion de titulos y subtitulos
 \setcounter{secnumdepth}{4}
 \titleformat{\paragraph}
@@ -26,7 +33,7 @@
 
 % Metadatos 
 \makeatletter
-\title{GUIA DE INSTALACIÓN DEBIAN}\let\Title\@title
+\title{GUIA DE INSTALACIÓN DEL SISTEMA OPERATIVO DEBIAN}\let\Title\@title
 \author{Rodrigo Mendoza Melgar}\let\Author\@author
 \date{-}\let\Date\@date
 \makeatother
@@ -43,24 +50,32 @@
 
 \begin{document}
 
-	% --- Caratula ---
-	\begin{titlepage}
-		\begin{center}
-			
-			\vspace*{20em}
-			
-			\rule{\textwidth}{1.6pt}\\[0.7em]
-			\textbf{\LARGE\Title}
-			\vspace*{2em}
-			\rule{\textwidth}{1.6pt}
-			
-			\vspace*{10em}
-						
-			\textsc{\textbf{Elaborada por:}}\\
-			\textsc{\textbf{\Author}}\\[15em]
-			\textsc{\textbf{Arequipa - Perú}}\\
-			\textsc{\textbf{2019}}\\[1em]
-		\end{center}
-	\end{titlepage}
+% --- Caratula ---
+\begin{titlepage}
+\begin{center}
+
+\vspace*{6em}
+
+\rule{\textwidth}{1.6pt}
+\LARGE \textbf{ \Title }\\
+\rule{\textwidth}{1.6pt}
+
+\vspace*{6em}
+
+\textsc{\textbf{Elaborada por:}}\\
+\textsc{\textbf{\Author}}\\[15em]
+\textsc{\textbf{Arequipa - Perú}}\\
+\textsc{\textbf{2019}}\\[1em]
+\end{center}
+\end{titlepage}
+
+% --- Tabla de contenidos --- 
+\tableofcontents
+
+\pagestyle{fancy}
+
+\input{chapters/chapter-01-instalacion-configuracion-red}
+\input{chapters/chapter-02-instalacion-configuracion-software-esencial}
+\input{chapters/chapter-03-instalacion-configuracion-software-especifico}
 
 \end{document}

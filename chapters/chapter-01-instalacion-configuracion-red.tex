@@ -1,0 +1,164 @@
+\chapter{\uppercase{Instalación y configuración de la red}}\label{chap:ins.conf.red}
+
+\newpage
+
+\section{Consultar el nombre de las interfaces de red}
+Antes de instalar y configurar la red temporalmente, se requiere conocer el nombre de las interfaces, para esto ejecutamos el comando:\\
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# ip addr
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+El nombre que se requiere, es algo como enp2s0 ó eth0 (ethernet), wlp7s5 ó wlan0 (wifi).
+
+\section{Configuración temporal de las interfaces de red}
+Permite realizar una conexion temporal a internet para descargar e instalar los paquetes esenciales. Para esto modificaremos los archivos de configuracion de las interfaces:\\
+Interfaz ethernet con DHCP:
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# nano /etc/network/interfaces
+
+source /etc/network/interfaces.d/*
+
+auto lo
+iface lo inet loopback
+
+auto [NOMBRE_INTERFACE]
+allow-hotplug [NOMBRE_INTERFACE]
+iface [NOMBRE_INTERFACE] inet dhcp
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.tem.int.red.int.eth.dhc}{comando.txt}\\[1em]
+Interfaz wifi con DHCP:
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# nano /etc/network/interfaces
+ 
+source /etc/network/interfaces.d/*
+
+auto lo
+iface lo inet loopback
+
+auto [NOMBRE_INTERFACE]
+allow-hotplug [NOMBRE_INTERFACE]
+iface [NOMBRE_INTERFACE] inet dhcp
+	wpa-ssid [SSID]
+	wpa-psk [CLAVE_SSID]
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.tem.int.red.int.wif.dhc}{comando.txt}\\[1em]
+Interfaz ethernet con IP estatica:
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# nano /etc/network/interfaces
+ 
+source /etc/network/interfaces.d/*
+
+auto lo
+iface lo inet loopback
+
+auto [NOMBRE_INTERFACE]
+allow-hotplug [NOMBRE_INTERFACE]
+iface [NOMBRE_INTERFACE] inet static
+	address 192.168.0.11
+	netmask 255.255.255.0
+	network 192.168.0.0
+	gateway 192.168.0.1
+	broadcast 192.168.0.255
+	dns-nameservers 8.8.8.8 8.8.4.4
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.tem.int.red.int.eth.est}{comando.txt}\\[1em]
+
+\section{Agregar resolvers de DNS \emph{(*Opcional)}}
+Puede suceder que no reconozca el parametro \textbf{dns-nameservers} en la configuración de las interfaces y sea necesario agregarlo tambien en los resolvers.
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# nano /etc/resolv.conf
+
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/agr.res.dns}{comando.txt}\\[1em]
+
+\section{Gestionando el servicio de gestion de la red}
+Para aplicar los cambios anteriores se requiere reiniciar el servicio de gestion de la red. Utilizamos el primer restart de la lista siguiente:
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# /etc/init.d/networking stop
+# /etc/init.d/networking status
+# /etc/init.d/networking start
+# /etc/init.d/networking restart
+# service network-manager stop
+# service network-manager status
+# service network-manager start
+# service network-manager restart
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/ges.ser.ges.red}{comando.txt}\\[1em]
+
+\section{¿Estamos conectados a internet?}
+Para responder a esta pregunta, utilizamos el comando ping.
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# ping google.com
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/est.con.red}{comando.txt}\\[1em]
+Una vez conectados, comenzamos a descargar los paquetes esenciales.\\
+Si aun se tiene problemas con la red, es aconsejable utilizar una conexion ethernet.\\
+
+\section{Instalar herramientas de red}
+Este paquete contiene importantes herramientas para gestionar la red como: arp, ifconfig, netstat, rarp, nameif y route. Adicionalmente contiene utilidades relacionada como plipconfig, slattach, mii-tool, iptunnel e ipmaddr.
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# apt install net-tools
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+
+\section{Problema con el driver de la tarjeta wifi}
+Para solucionar estos problemas, se requiere conexion a internet por cable ethernet.\\
+Para conocer si el sistema operativo reconoce la tarjeta wifi, utilizamos el comando lspci, el cual permite desplegar la informacion acerca de los buses PCI.
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# lspci -nn | grep -i network
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+Puede que el driver \textbf{iwlwifi} o \textbf{firmware-iwlwifi} se haya instalado (prueba utilizando el comando \textbf{modinfo iwlwifi} o el lspci, si no se reconoce entonces no esta instalado) y es necesario reinstalarlo o reconfigurarlo.\\
+Comandos utilizados: modprobe (Agrega un modulo de kernel), rmmod (Remueve un modulo del kernel), iwlwifi (Driver con soporte para varios adaptadores wifi intel).
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# ifconfig [NOMBRE_INTERFACE] down
+# rmmod -f iwlwifi
+# modprobe iwlwifi 11n_disable=1
+# ifconfig [NOMBRE_INTERFACE] up
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+Algunas veces es necesario apagar y no reiniciar, para que los cambios surgan efecto (Probablemente se almacenen algunas configuraciones en la memoria RAM, despues de el reinicio).\\
+
+\section{Problema con la MAC aleatoria del NetworkManager}
+El NetworkManager agrego la direccion MAC aleatoria para incrementar la privacidad, pero esto puede generar errores de conexion, prueba deshabilitando este parametro en su configuración.
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# nano /etc/NetworkManager/NetworkManager.conf
+
+[main]
+plugins=ifupdown,keyfile
+
+[ifupdown]
+managed=false
+
+[device]
+wifi.scan-rand-mac-address=no
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+Algunas veces es necesario apagar y no reiniciar, para que los cambios surgan efecto (Probablemente se almacenen algunas configuraciones en la memoria RAM, despues de el reinicio).\\
+
+\section{Reconfiguración de la red}
+Esta reconfiguración la aplicaremos cuando se culmine con el \autoref{chap:ins.sof.ese}\\
+Los cambios aplicados en el archivo \textbf{/etc/network/interfaces}
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# nano /etc/network/interfaces
+ 
+source /etc/network/interfaces.d/*
+
+auto lo
+iface lo inet loopback
+
+# auto [NOMBRE_INTERFACE]
+# allow-hotplug [NOMBRE_INTERFACE]
+# iface [NOMBRE_INTERFACE] inet dhcp
+#   wpa-ssid [SSID]
+#   wpa-psk [CLAVE_SSID]
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# /etc/init.d/networking restart
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+

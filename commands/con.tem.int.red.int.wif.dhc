@@ -1,0 +1,12 @@
+nano /etc/network/interfaces
+ 
+source /etc/network/interfaces.d/*
+
+auto lo
+iface lo inet loopback
+
+auto [NOMBRE_INTERFACE]
+allow-hotplug [NOMBRE_INTERFACE]
+iface [NOMBRE_INTERFACE] inet dhcp
+	wpa-ssid [SSID]
+	wpa-psk [CLAVE_SSID]

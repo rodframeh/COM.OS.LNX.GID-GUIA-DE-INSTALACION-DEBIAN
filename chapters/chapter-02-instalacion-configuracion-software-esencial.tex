@@ -1,0 +1,118 @@
+\chapter{\uppercase{Instalación de software esencial}}\label{chap:ins.sof.ese}
+
+\newpage
+
+\section{Configuración de los repositorios}
+Los repositorios nos permitiran descargar los paquetes de software, por lo cual se debe tener en cuenta los tipos: estable (paquetes de software ya pasaron pruebas, son antiguos pero seguros), pruebas (paquetes de software estan en pruebas), backports(paquetes compilados en pruebas), experimental (los paquetes de software estan en desarrollo, son mas actuales pero inseguros) y multimedia (contiene paquetes de software para elementos multimedia como codecs, flash, etc.). El repositorio redirector nos permite obviar la seleccion de los repositorios segun su mejor ubicacion (Reemplazariamos: http://ftp.us.debian.org/debian/ por http://httpredir.debian.org/debian/).\\
+Esto los configuramos de esta forma:
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# nano /etc/apt/sources.list
+
+# Estable
+deb http://ftp.us.debian.org/debian/ stretch main contrib non-free
+deb-src http://ftp.us.debian.org/debian/ stretch main contrib non-free
+deb http://security.debian.org/debian-security stretch/updates main contrib non-free
+deb-src http://security.debian.org/debian-security stretch/updates main contrib non-free
+deb http://ftp.us.debian.org/debian/ stretch-updates main contrib non-free
+deb-src http://ftp.us.debian.org/debian/ stretch-updates main contrib non-free
+ 
+# Pruebas [Opcional]
+deb http://http.us.debian.org/debian testing main non-free contrib
+deb-src http://http.us.debian.org/debian testing main non-free contrib
+deb http://security.debian.org/ testing/updates main contrib non-free
+deb-src http://security.debian.org/ testing/updates main contrib non-free
+ 
+# Experimental (Sid) [Opcional]
+deb http://deb.debian.org/debian experimental main non-free contrib
+deb-src http://http.us.debian.org/debian experimental main non-free contrib
+
+# Inestable [Opcional]
+deb http://http.us.debian.org/debian unstable main non-free contrib
+deb-src http://http.us.debian.org/debian unstable main non-free contrib
+
+# Backport [Opcional]
+deb http://deb.debian.org/debian stretch-backports main non-free contrib
+deb-src http://deb.debian.org/debian stretch-backports main non-free contrib
+
+# Multimedia - Requiere clave publica [Opcional] 
+deb http://www.deb-multimedia.org/ stretch main non-free
+deb-src http://www.deb-multimedia.org/ stretch main non-free
+
+# Ejemplo de Repositorio Redirector - Estable [Opcional]
+deb http://httpredir.debian.org/debian/ stretch main contrib non-free
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+
+\section{Actualización de las fuentes}
+Permite descargar la lista de paquetes existentes en los repositorios anteriormente determinados.
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# apt update
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+
+\section{Actualización de los paquetes de software instalados \emph{(*Opcional)}}
+Permite actualizar los paquetes de software instalados. Esto podria ser conviente si se ha añadido algun de repositorio superior al estable.
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# apt upgrade
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+
+\section{Instalación de los controladores}
+Permite descargar automaticamente los controladores requeridos, ya no es necesario instalar y configurar cada uno de forma independiente. Se tiene dos tipos non-free (software privado) y free (software no privado).\\
+El controlador firmware-realtek, si es requerido se instala.
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# apt install firmware-linux-nonfree
+# apt install firmware-linux-free
+# apt install firmware-linux
+# apt install firmware-realtek
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+
+\section{Instalación del servicio de interfaz grafica}
+Para la instalación de la interfaz grafica se utilizo el entorno de escritorio GNOME Flashback por ser uno de los mas ligeros y simples. Pero este entorno de escritorio lo ejecutaremos sobre el servidor de visualizacion Xorg. Para lo cual los instalaremos lo siguiente forma:\\
+% #apt install --no-install-recommends --no-install-suggests libgl1-mesa-dri xserver-xorg-video-ati
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# apt install --no-install-recommends --no-install-suggests xorg 
+# apt install --no-install-recommends --no-install-suggests gdm3 desktop-base gnome-applets
+# apt install --no-install-recommends --no-install-suggests gnome-session-flashback
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+Despues de la instalación reiniciamos el ordenador y este deberia cargar con la interfaz grafica instalada.
+
+\section{Reinstalacion o instalación del gestor de pantalla}
+Este programa permite acceder al entorno de escritorio y aparece al momento de acceder al sistema solicitando un usuario y clave.\\
+Tal vez el gdm3 no se ha instalado del todo correcto, intentaremos mejorar esto con los siguientes comandos.
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# apt --purge --reinstall install gdm3
+# dpkg-reconfigure gdm3
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+Si todo continua igual tal vez sea necesario modificar la configuracion del demonio
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# nano /etc/gdm3/daemon.conf
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+Puede que sea necesario gestionar el servicio
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# systemctl start gdm3
+# systemctl status gdm3
+# systemctl enable gdm3
+# systemctl disable gdm3
+# /lib/systemd/systemd-sysv-install enable gdm3
+# /lib/systemd/systemd-sysv-install disable gdm3
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+Si se persiste con el error y se requiere un gestor ligero, optar por usar \textbf{lightdm}
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# apt install lightdm
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+
+\section{Instalación de los programas esenciales}
+Estos programas nos permitiran realizar actividades basicas sobre el sistema operativo instalado.
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# apt install --no-install-recommends --no-install-suggests gnome-terminal firefox-esr gedit nautilus gnome-control-center network-manager-gnome synaptic alacarte gnome-system-monitor gnome-calculator gnome-screenshot eog evince gparted
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+
+

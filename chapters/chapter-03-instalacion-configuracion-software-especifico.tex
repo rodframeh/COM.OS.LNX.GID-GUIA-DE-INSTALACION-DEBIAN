@@ -1,0 +1,95 @@
+\chapter{\uppercase{Instalación de software especifico}}\label{chap:ins.sof.esp}
+
+\newpage
+
+\section{Instalación de paquetes de sonido}
+Estos programas nos permitira grabar y reproducir archivos con audio sobre el sistema operativo instalado.
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# apt install alsa-utils alsa-oss alsa-tools pulseaudio
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+Si tenemos problemas con la instalacion, tal vez sea necesario volver a configurarlo.
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# dpkg-reconfigure alsa-base
+# alsaconf
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+Si requerimos gestionar el proceso
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# alsactl init
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+
+\section{Instalación de paquetes especificos}
+Estos son paquetes de software para diferentes ambitos especificos.\\
+Si se desea grabar con el microfono:
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# apt install gnome-sound-recorder
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+Para alterar la salida del audio:
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# apt install gnome-alsamixer
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+Para grabar CD-DVD:
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# apt install xfburn
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+Si se desea agregar applets al panel:
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# apt install gnome-system-tools
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+Si se desea descargar torrents:
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# apt install transmission-gtk
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+Si se desea utilizar evernote:
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# apt install nixnote2
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+Si se desea cambiar temas, fuentes, entre otras configuraciones de GNOME:
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# apt install gnome-tweak-tool
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+Si se desea reproducir musica y videos:
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# apt install vlc
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+Si se desea un navegador como chrome, pero mas puro:
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# apt install chromium chromium-l10n
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+Si se desea instalar temas e iconos:
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# apt install gnome-icon-theme gnome-icon-theme-extras gnome-icon-theme-gartoon gnome-icon-theme-nuovo gnome-icon-theme-suede gnome-icon-theme-symbolic gnome-icon-theme-yasis
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+Si se desea instalar fuentes:
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# apt install ttf-mscorefonts-installer fonts-liberation2 fonts-liberation fonts-freefont-ttf fonts-uralic fonts-sil-andikanewbasic fonts-freefont-ttf fonts-linuxlibertine fonts-dustin fonts-croscore ttf-staypuft fonts-open-sans
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+Si se desea instalar librerias de apoyo
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# apt install --no-install-recommends --no-install-suggests llvm-4.0 clang-4.0 curl build-essential intltool-debian libcgi-xml-perl xmlto docbook-xml libauthen-sasl-perl libcairo-perl libencode-locale-perl libept1.5.0 libfile-basedir-perl libfile-desktopentry-perl libfile-listing-perl libfile-mimeinfo-perl libfont-afm-perl libglib-perl libgtk2-perl libhtml-form-perl libhtml-format-perl libhtml-parser-perl libhtml-tagset-perl libhtml-tree-perl libhttp-cookies-perl libhttp-daemon-perl libhttp-date-perl libhttp-message-perl libhttp-negotiate-perl libio-html-perl libio-socket-ssl-perl libipc-system-simple-perl liblwp-mediatypes-perl liblwp-protocol-https-perl libmailtools-perl libnet-dbus-perl libnet-http-perl libnet-smtp-ssl-perl libnet-ssleay-perl libpango-perl librarian0 libtie-ixhash-perl libtimedate-perl liburi-perl libwww-perl libwww-robotrules-perl libx11-protocol-perl libxml-parser-perl libxml-twig-perl libxml-xpathengine-perl perl-openssl-defaults rarian-compat sgml-data synaptic xdg-utils pkg-config gconf2 libgconf2-dev libglade2-dev linux-headers-\$(uname -r) libpcl-dev gir1.2-gmenu-3.0 python-gi python-gi-cairo python3-gi python3-gi-cairo gir1.2-gtk-3.0 libgnome-menu-3-dev lsb-core
+\end{minted}
+\textattachfile[mimetype=text/plain, description= Archivo comando.txt abierto, color=0 0 0.7, print=false]{commands/con.nom.int.red}{comando.txt}\\[1em]
+Si se desea escribir en latex los editores latexila (GNOME), lyx y texmaker. Si se utilizara el paquete \textbf{minted} en latex se debera instalar python y pygments.
+\begin{minted}[breaklines,style=colorful,]{shell-session}
+# apt install texlive-full texlive-lang-spanish texlive-latex-extra 
+# apt install latexila
+# apt install lyx
+# apt install texmaker
+# apt install python{2,3} python-pip python3-pip
+# apt install python-pygments
+# pip2 install pygments
+# pip3 install pygments
+\end{minted}
