@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.2.13)  15 FEB 2019 14:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.2.17)  17 FEB 2019 18:55
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1194,9 +1194,9 @@ runsystem(pygmentize -l shell-session -f latex -P commandprefix=PYG -F tokenmer
 ge -o main.out.pyg main.pyg)...executed.
 
  (./main.out.pyg))
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 81.
-LaTeX Info: Redefining \. on input line 81.
-LaTeX Info: Redefining \% on input line 81.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 82.
+LaTeX Info: Redefining \. on input line 82.
+LaTeX Info: Redefining \% on input line 82.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1205,32 +1205,35 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [17]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 81.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 82.
  (./main.aux
 LaTeX Info: Redefining \. on input line 26.
 LaTeX Info: Redefining \% on input line 26.
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 81.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 81.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 82.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 82.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 337C3B15D95B341F011E534114255A6F;1802.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 runsystem(rm main.pyg)...executed.
 
 runsystem(rm main.out.pyg)...executed.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 81.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 82.
  ) 
 Here is how much of TeX's memory you used:
- 16303 strings out of 492615
- 276793 string characters out of 6131390
- 485902 words of memory out of 5000000
- 19830 multiletter control sequences out of 15000+600000
+ 16303 strings out of 494385
+ 276793 string characters out of 6172919
+ 481478 words of memory out of 5000000
+ 19601 multiletter control sequences out of 15000+600000
  10746 words of font info for 39 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
+ 107 hyphenation exceptions out of 8191
  45i,11n,43p,2349b,761s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/sh
@@ -1239,7 +1242,7 @@ live/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/font
 s/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on main.pdf (17 pages, 121007 bytes).
+Output written on main.pdf (17 pages, 121006 bytes).
 PDF statistics:
  348 PDF objects out of 1000 (max. 8388607)
  274 compressed objects within 3 object streams
